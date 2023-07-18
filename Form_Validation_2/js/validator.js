@@ -33,12 +33,16 @@ function Validator(formSelector) {
         min: function (min) {
             return function (value) {
                 return value.length >= min ? undefined : `Vui lòng nhập ít nhất ${min} kí tự`;
-            }        
+            }
         },
         max: function (max) {
             return function (value) {
                 return value.length <= max ? undefined : `Vui lòng nhập tối đa ${max} kí tự`;
-            }        
+            }
+        },
+        kytu: function (value) {
+            var regex = /^[a-zA-Z0-9]*$/;
+            return regex.test(value) ? undefined : 'chỉ nhận số và chữ';
         },
     };
 
@@ -124,7 +128,7 @@ function Validator(formSelector) {
                 var formMessage = formGroup.querySelector('.form-message');
                 if (formMessage) {
                     formMessage.innerText = '';
-                }   
+                }
             }
         }
     }
